@@ -1,0 +1,147 @@
+{
+  "control_ids": [
+    "ISO27001:A.5.23",
+    "ISO27001:A.8.20",
+    "ISO27001:A.8.24",
+    "CIS8:3.3",
+    "CIS8:3.10",
+    "CIS8:3.11"
+  ],
+  "collector": "cloud/azure_storage_encryption.py",
+  "host": "azure-subscription:aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  "collected_at_utc": "2026-10-15T09:30:00Z",
+  "collected_by": "evidence.reader@northwind.example",
+  "data": {
+    "subscriptions_total": 1,
+    "subscriptions": [
+      {
+        "subscription_id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+        "display_name": "Northwind Production",
+        "storage_accounts": [
+          {
+            "name": "nwprodappdata01",
+            "resource_group": "rg-prod-app",
+            "location": "westeurope",
+            "sku": "Standard_ZRS",
+            "kind": "StorageV2",
+            "created_utc": "2025-04-11T13:02:45Z",
+            "encryption": {
+              "key_source": "Microsoft.Keyvault",
+              "customer_managed_key": true,
+              "require_infrastructure_encryption": true,
+              "blob": {
+                "enabled": true,
+                "key_type": "Account"
+              },
+              "file": {
+                "enabled": true,
+                "key_type": "Account"
+              },
+              "table": null,
+              "queue": null
+            },
+            "https_traffic_only": true,
+            "minimum_tls_version": "TLS1_2",
+            "allow_blob_public_access": false,
+            "allow_shared_key_access": false,
+            "public_network_access": "Disabled",
+            "network_default_action": "Deny",
+            "network_ip_rules": 0,
+            "network_vnet_rules": 2,
+            "private_endpoints": 1,
+            "allow_cross_tenant_replication": false
+          },
+          {
+            "name": "nwproddiag01",
+            "resource_group": "rg-prod-monitoring",
+            "location": "westeurope",
+            "sku": "Standard_LRS",
+            "kind": "StorageV2",
+            "created_utc": "2025-04-11T13:10:02Z",
+            "encryption": {
+              "key_source": "Microsoft.Storage",
+              "customer_managed_key": false,
+              "require_infrastructure_encryption": false,
+              "blob": {
+                "enabled": true,
+                "key_type": "Account"
+              },
+              "file": {
+                "enabled": true,
+                "key_type": "Account"
+              },
+              "table": null,
+              "queue": null
+            },
+            "https_traffic_only": true,
+            "minimum_tls_version": "TLS1_2",
+            "allow_blob_public_access": false,
+            "allow_shared_key_access": true,
+            "public_network_access": "Enabled",
+            "network_default_action": "Allow",
+            "network_ip_rules": 0,
+            "network_vnet_rules": 0,
+            "private_endpoints": 0,
+            "allow_cross_tenant_replication": false
+          },
+          {
+            "name": "nwlegacyweb",
+            "resource_group": "rg-legacy",
+            "location": "northeurope",
+            "sku": "Standard_LRS",
+            "kind": "Storage",
+            "created_utc": "2021-09-30T08:44:19Z",
+            "encryption": {
+              "key_source": "Microsoft.Storage",
+              "customer_managed_key": false,
+              "require_infrastructure_encryption": false,
+              "blob": {
+                "enabled": true,
+                "key_type": "Account"
+              },
+              "file": {
+                "enabled": true,
+                "key_type": "Account"
+              },
+              "table": null,
+              "queue": null
+            },
+            "https_traffic_only": false,
+            "minimum_tls_version": "TLS1_0",
+            "allow_blob_public_access": true,
+            "allow_shared_key_access": true,
+            "public_network_access": "Enabled",
+            "network_default_action": "Allow",
+            "network_ip_rules": 0,
+            "network_vnet_rules": 0,
+            "private_endpoints": 0,
+            "allow_cross_tenant_replication": true
+          }
+        ]
+      }
+    ],
+    "summary": {
+      "storage_accounts_total": 3,
+      "customer_managed_key": 1,
+      "infrastructure_encryption": 1,
+      "accounts_allowing_http": [
+        "nwlegacyweb"
+      ],
+      "accounts_tls_below_1_2": [
+        "nwlegacyweb"
+      ],
+      "accounts_allowing_public_blob_access": [
+        "nwlegacyweb"
+      ],
+      "accounts_allowing_shared_key": [
+        "nwproddiag01",
+        "nwlegacyweb"
+      ],
+      "accounts_network_default_allow": [
+        "nwproddiag01",
+        "nwlegacyweb"
+      ]
+    }
+  },
+  "sha256": "56b8d46f071fe838f978d1a0b517ef5acaa1c83847f645107da38eab86a97baa"
+}

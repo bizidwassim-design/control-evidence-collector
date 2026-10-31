@@ -1,0 +1,293 @@
+{
+  "control_ids": [
+    "ISO27001:A.5.15",
+    "ISO27001:A.8.3",
+    "ISO27001:A.8.5",
+    "CIS8:6.3",
+    "CIS8:6.4",
+    "CIS8:6.5"
+  ],
+  "collector": "m365/Get-ConditionalAccessEvidence.ps1",
+  "host": "entra-tenant:11111111-2222-3333-4444-555555555555",
+  "collected_at_utc": "2026-10-15T09:30:00Z",
+  "collected_by": "evidence.reader@northwind.example",
+  "data": {
+    "tenant_id": "11111111-2222-3333-4444-555555555555",
+    "scopes_used": [
+      "Policy.Read.All"
+    ],
+    "policies": [
+      {
+        "id": "0a1b2c3d-0001-4000-8000-000000000001",
+        "display_name": "CA001 - Require MFA for all users",
+        "state": "enabled",
+        "created_utc": "2025-03-04T09:12:00Z",
+        "modified_utc": "2026-07-22T14:40:11Z",
+        "users": {
+          "include_all": true,
+          "include_users_count": 0,
+          "include_groups_count": 0,
+          "include_roles_count": 0,
+          "include_guests": false,
+          "exclude_users_count": 2,
+          "exclude_groups_count": 1,
+          "exclude_roles_count": 0
+        },
+        "applications": {
+          "include_all": true,
+          "include_count": 1,
+          "exclude_count": 0,
+          "user_actions": []
+        },
+        "client_app_types": [
+          "all"
+        ],
+        "platforms_included": [],
+        "locations_included": [],
+        "locations_excluded": [],
+        "sign_in_risk_levels": [],
+        "user_risk_levels": [],
+        "device_filter": null,
+        "grant": {
+          "operator": "OR",
+          "built_in_controls": [
+            "mfa"
+          ],
+          "authentication_strength": null,
+          "terms_of_use_count": 0
+        },
+        "session": {
+          "sign_in_frequency": null,
+          "persistent_browser": null,
+          "app_enforced_restrictions": false,
+          "cloud_app_security": null
+        }
+      },
+      {
+        "id": "0a1b2c3d-0002-4000-8000-000000000002",
+        "display_name": "CA002 - Block legacy authentication",
+        "state": "enabled",
+        "created_utc": "2025-03-04T09:15:00Z",
+        "modified_utc": "2025-03-04T09:15:00Z",
+        "users": {
+          "include_all": true,
+          "include_users_count": 0,
+          "include_groups_count": 0,
+          "include_roles_count": 0,
+          "include_guests": false,
+          "exclude_users_count": 0,
+          "exclude_groups_count": 0,
+          "exclude_roles_count": 0
+        },
+        "applications": {
+          "include_all": true,
+          "include_count": 1,
+          "exclude_count": 0,
+          "user_actions": []
+        },
+        "client_app_types": [
+          "exchangeActiveSync",
+          "other"
+        ],
+        "platforms_included": [],
+        "locations_included": [],
+        "locations_excluded": [],
+        "sign_in_risk_levels": [],
+        "user_risk_levels": [],
+        "device_filter": null,
+        "grant": {
+          "operator": "OR",
+          "built_in_controls": [
+            "block"
+          ],
+          "authentication_strength": null,
+          "terms_of_use_count": 0
+        },
+        "session": {
+          "sign_in_frequency": null,
+          "persistent_browser": null,
+          "app_enforced_restrictions": false,
+          "cloud_app_security": null
+        }
+      },
+      {
+        "id": "0a1b2c3d-0003-4000-8000-000000000003",
+        "display_name": "CA003 - Phishing-resistant MFA for admin roles",
+        "state": "enabled",
+        "created_utc": "2026-01-19T10:00:00Z",
+        "modified_utc": "2026-01-19T10:00:00Z",
+        "users": {
+          "include_all": false,
+          "include_users_count": 0,
+          "include_groups_count": 0,
+          "include_roles_count": 14,
+          "include_guests": false,
+          "exclude_users_count": 2,
+          "exclude_groups_count": 0,
+          "exclude_roles_count": 0
+        },
+        "applications": {
+          "include_all": true,
+          "include_count": 1,
+          "exclude_count": 0,
+          "user_actions": []
+        },
+        "client_app_types": [
+          "all"
+        ],
+        "platforms_included": [],
+        "locations_included": [],
+        "locations_excluded": [],
+        "sign_in_risk_levels": [],
+        "user_risk_levels": [],
+        "device_filter": null,
+        "grant": {
+          "operator": "OR",
+          "built_in_controls": [],
+          "authentication_strength": "Phishing-resistant MFA",
+          "terms_of_use_count": 0
+        },
+        "session": {
+          "sign_in_frequency": "4 hours",
+          "persistent_browser": "never",
+          "app_enforced_restrictions": false,
+          "cloud_app_security": null
+        }
+      },
+      {
+        "id": "0a1b2c3d-0004-4000-8000-000000000004",
+        "display_name": "CA004 - Block high sign-in risk",
+        "state": "enabled",
+        "created_utc": "2026-02-02T08:30:00Z",
+        "modified_utc": "2026-02-02T08:30:00Z",
+        "users": {
+          "include_all": true,
+          "include_users_count": 0,
+          "include_groups_count": 0,
+          "include_roles_count": 0,
+          "include_guests": false,
+          "exclude_users_count": 2,
+          "exclude_groups_count": 0,
+          "exclude_roles_count": 0
+        },
+        "applications": {
+          "include_all": true,
+          "include_count": 1,
+          "exclude_count": 0,
+          "user_actions": []
+        },
+        "client_app_types": [
+          "all"
+        ],
+        "platforms_included": [],
+        "locations_included": [],
+        "locations_excluded": [],
+        "sign_in_risk_levels": [
+          "high"
+        ],
+        "user_risk_levels": [],
+        "device_filter": null,
+        "grant": {
+          "operator": "OR",
+          "built_in_controls": [
+            "block"
+          ],
+          "authentication_strength": null,
+          "terms_of_use_count": 0
+        },
+        "session": {
+          "sign_in_frequency": null,
+          "persistent_browser": null,
+          "app_enforced_restrictions": false,
+          "cloud_app_security": null
+        }
+      },
+      {
+        "id": "0a1b2c3d-0005-4000-8000-000000000005",
+        "display_name": "CA005 - Require compliant device for Office 365 (report-only)",
+        "state": "enabledForReportingButNotEnforced",
+        "created_utc": "2026-09-10T15:00:00Z",
+        "modified_utc": "2026-09-10T15:00:00Z",
+        "users": {
+          "include_all": true,
+          "include_users_count": 0,
+          "include_groups_count": 0,
+          "include_roles_count": 0,
+          "include_guests": false,
+          "exclude_users_count": 2,
+          "exclude_groups_count": 1,
+          "exclude_roles_count": 0
+        },
+        "applications": {
+          "include_all": false,
+          "include_count": 1,
+          "exclude_count": 0,
+          "user_actions": []
+        },
+        "client_app_types": [
+          "all"
+        ],
+        "platforms_included": [
+          "windows",
+          "macOS"
+        ],
+        "locations_included": [],
+        "locations_excluded": [],
+        "sign_in_risk_levels": [],
+        "user_risk_levels": [],
+        "device_filter": null,
+        "grant": {
+          "operator": "OR",
+          "built_in_controls": [
+            "compliantDevice"
+          ],
+          "authentication_strength": null,
+          "terms_of_use_count": 0
+        },
+        "session": {
+          "sign_in_frequency": null,
+          "persistent_browser": null,
+          "app_enforced_restrictions": false,
+          "cloud_app_security": null
+        }
+      }
+    ],
+    "named_locations": [
+      {
+        "display_name": "Northwind offices",
+        "type": "ipNamedLocation",
+        "is_trusted": true,
+        "ip_ranges": 3,
+        "countries": null
+      },
+      {
+        "display_name": "Blocked countries",
+        "type": "countryNamedLocation",
+        "is_trusted": null,
+        "ip_ranges": null,
+        "countries": 12
+      }
+    ],
+    "checks": {
+      "policies_total": 5,
+      "policies_enabled": 4,
+      "policies_report_only": 1,
+      "policies_disabled": 0,
+      "mfa_for_all_users": true,
+      "mfa_for_admin_roles": true,
+      "legacy_auth_blocked": true,
+      "sign_in_risk_policy": true,
+      "user_risk_policy": false,
+      "device_compliance_required": false,
+      "guest_specific_policy": false,
+      "policies_with_exclusions": 3,
+      "enabled_policy_names": [
+        "CA001 - Require MFA for all users",
+        "CA002 - Block legacy authentication",
+        "CA003 - Phishing-resistant MFA for admin roles",
+        "CA004 - Block high sign-in risk"
+      ]
+    }
+  },
+  "sha256": "26ecd4bd53a682d617f51a2936d43715ebaaedab385735d27d6bb1cd2e5f3e6b"
+}

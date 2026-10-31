@@ -1,0 +1,20 @@
+# Real evidence must never be committed. Only examples/ (fictional, generated) is tracked.
+evidence/
+*.evidence.json
+manifest.json
+
+# Excel lock/temp files
+~$*.xlsx
+.~lock.*#
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

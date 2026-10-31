@@ -1,0 +1,112 @@
+{
+  "control_ids": [
+    "ISO27001:A.8.15",
+    "CIS8:8.2",
+    "CIS8:8.3",
+    "CIS8:8.5"
+  ],
+  "collector": "windows/Get-AuditPolicyEvidence.ps1",
+  "host": "NW-WS-0421",
+  "collected_at_utc": "2026-10-15T09:30:00Z",
+  "collected_by": "NORTHWIND\\svc-evidence",
+  "data": {
+    "audit_policy": {
+      "subcategory_count": 59,
+      "no_auditing_count": 21,
+      "settings": [
+        {
+          "subcategory": "Logon",
+          "guid": "{0CCE9215-69AE-11D9-BED3-505054503030}",
+          "setting": "Success and Failure"
+        },
+        {
+          "subcategory": "Logoff",
+          "guid": "{0CCE9216-69AE-11D9-BED3-505054503030}",
+          "setting": "Success"
+        },
+        {
+          "subcategory": "Process Creation",
+          "guid": "{0CCE922B-69AE-11D9-BED3-505054503030}",
+          "setting": "Success"
+        },
+        {
+          "subcategory": "Security Group Management",
+          "guid": "{0CCE9237-69AE-11D9-BED3-505054503030}",
+          "setting": "Success and Failure"
+        },
+        {
+          "subcategory": "Audit Policy Change",
+          "guid": "{0CCE922F-69AE-11D9-BED3-505054503030}",
+          "setting": "Success and Failure"
+        },
+        {
+          "subcategory": "Credential Validation",
+          "guid": "{0CCE923F-69AE-11D9-BED3-505054503030}",
+          "setting": "Success and Failure"
+        },
+        {
+          "subcategory": "Removable Storage",
+          "guid": "{0CCE9245-69AE-11D9-BED3-505054503030}",
+          "setting": "No Auditing"
+        }
+      ]
+    },
+    "event_logs": [
+      {
+        "log_name": "Security",
+        "enabled": true,
+        "max_size_mb": 1024.0,
+        "log_mode": "Circular",
+        "record_count": 412233,
+        "oldest_record_utc": null,
+        "file_size_mb": 1024.0
+      },
+      {
+        "log_name": "System",
+        "enabled": true,
+        "max_size_mb": 64.0,
+        "log_mode": "Circular",
+        "record_count": 38120,
+        "oldest_record_utc": null,
+        "file_size_mb": 64.0
+      },
+      {
+        "log_name": "Microsoft-Windows-PowerShell/Operational",
+        "enabled": true,
+        "max_size_mb": 256.0,
+        "log_mode": "Circular",
+        "record_count": 90412,
+        "oldest_record_utc": null,
+        "file_size_mb": 212.3
+      },
+      {
+        "log_name": "Microsoft-Windows-Sysmon/Operational",
+        "enabled": true,
+        "max_size_mb": 512.0,
+        "log_mode": "Circular",
+        "record_count": 301775,
+        "oldest_record_utc": null,
+        "file_size_mb": 498.0
+      }
+    ],
+    "security_log_span": {
+      "oldest_event_utc": "2026-09-28T14:03:19Z",
+      "days_covered": 16.8
+    },
+    "powershell_logging": {
+      "script_block_logging": 1,
+      "module_logging": 1,
+      "transcription": 0,
+      "transcription_dir_set": false
+    },
+    "command_line_auditing": {
+      "include_command_line_in_4688": 1
+    },
+    "sysmon": {
+      "installed": true,
+      "name": "Sysmon64",
+      "status": "Running"
+    }
+  },
+  "sha256": "454fc1eca5b2aef069650312e9269ed06f3bf1a4be8c203822c574accf9e48ea"
+}

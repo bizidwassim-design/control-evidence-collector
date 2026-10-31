@@ -1,0 +1,69 @@
+{
+  "control_ids": [
+    "ISO27001:A.8.8",
+    "CIS8:7.3",
+    "CIS8:7.4"
+  ],
+  "collector": "windows/Get-PatchStatusEvidence.ps1",
+  "host": "NW-WS-0421",
+  "collected_at_utc": "2026-10-15T09:30:00Z",
+  "collected_by": "NORTHWIND\\svc-evidence",
+  "data": {
+    "operating_system": {
+      "caption": "Microsoft Windows 11 Enterprise",
+      "version": "10.0.26100",
+      "build_number": "26100",
+      "ubr": 4652,
+      "display_version": "24H2",
+      "architecture": "64-bit",
+      "install_date": "2025-02-18T10:05:12Z",
+      "last_boot_utc": "2026-10-13T06:12:44Z",
+      "uptime_days": 2.1
+    },
+    "hotfixes": {
+      "total_installed": 14,
+      "newest_installed_on": "2026-10-09",
+      "days_since_newest": 6,
+      "items": [
+        {
+          "hotfix_id": "KB5099999",
+          "description": "Security Update",
+          "installed_on": "2026-10-09"
+        },
+        {
+          "hotfix_id": "KB5099001",
+          "description": "Security Update",
+          "installed_on": "2026-09-11"
+        },
+        {
+          "hotfix_id": "KB5098765",
+          "description": "Update",
+          "installed_on": "2026-08-14"
+        }
+      ]
+    },
+    "pending_reboot": {
+      "component_based_servicing": false,
+      "windows_update": false,
+      "pending_file_rename": false,
+      "any": false
+    },
+    "update_policy": {
+      "policy_present": true,
+      "no_auto_update": 0,
+      "au_options": 4,
+      "scheduled_install_day": 0,
+      "use_wsus_server": 0,
+      "wsus_server": null,
+      "deferral_quality_days": 7,
+      "deferral_feature_days": 60,
+      "last_install_success_utc": "2026-10-09 03:21:07",
+      "last_detect_success_utc": "2026-10-15 07:02:51"
+    },
+    "windows_update_service": {
+      "status": "Running",
+      "start_type": "Manual"
+    }
+  },
+  "sha256": "2fecc88143da922ffada23e6dadab80a34b64b3a43ce611ed5d9739848803edb"
+}

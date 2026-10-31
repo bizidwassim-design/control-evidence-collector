@@ -1,0 +1,135 @@
+{
+  "control_ids": [
+    "ISO27001:A.5.23",
+    "ISO27001:A.8.3",
+    "ISO27001:A.8.24",
+    "CIS8:3.3",
+    "CIS8:3.11",
+    "CIS8:8.5"
+  ],
+  "collector": "cloud/aws_s3_public_access.py",
+  "host": "aws-account:123456789012",
+  "collected_at_utc": "2026-10-15T09:30:00Z",
+  "collected_by": "arn:aws:sts::123456789012:assumed-role/SecurityAudit/evidence.reader",
+  "data": {
+    "account_id": "123456789012",
+    "caller_arn": "arn:aws:sts::123456789012:assumed-role/SecurityAudit/evidence.reader",
+    "account_public_access_block": {
+      "block_public_acls": true,
+      "ignore_public_acls": true,
+      "block_public_policy": true,
+      "restrict_public_buckets": true
+    },
+    "buckets_total": 4,
+    "buckets_truncated": false,
+    "buckets": [
+      {
+        "name": "northwind-app-logs-eu",
+        "region": "eu-west-1",
+        "public_access_block": {
+          "block_public_acls": true,
+          "ignore_public_acls": true,
+          "block_public_policy": true,
+          "restrict_public_buckets": true
+        },
+        "policy_is_public": false,
+        "acl_public_grants": [],
+        "acl_is_public": false,
+        "default_encryption": {
+          "algorithm": "aws:kms",
+          "kms_key_configured": true,
+          "bucket_key_enabled": true
+        },
+        "versioning": "Enabled",
+        "access_logging": {
+          "enabled": true,
+          "target_bucket": "northwind-s3-access-logs"
+        }
+      },
+      {
+        "name": "northwind-backups-eu",
+        "region": "eu-west-1",
+        "public_access_block": {
+          "block_public_acls": true,
+          "ignore_public_acls": true,
+          "block_public_policy": true,
+          "restrict_public_buckets": true
+        },
+        "policy_is_public": false,
+        "acl_public_grants": [],
+        "acl_is_public": false,
+        "default_encryption": {
+          "algorithm": "aws:kms",
+          "kms_key_configured": true,
+          "bucket_key_enabled": true
+        },
+        "versioning": "Enabled",
+        "access_logging": {
+          "enabled": true,
+          "target_bucket": "northwind-s3-access-logs"
+        }
+      },
+      {
+        "name": "northwind-marketing-site",
+        "region": "us-east-1",
+        "public_access_block": {
+          "block_public_acls": true,
+          "ignore_public_acls": true,
+          "block_public_policy": false,
+          "restrict_public_buckets": false
+        },
+        "policy_is_public": true,
+        "acl_public_grants": [],
+        "acl_is_public": false,
+        "default_encryption": {
+          "algorithm": "AES256",
+          "kms_key_configured": false,
+          "bucket_key_enabled": false
+        },
+        "versioning": "Disabled",
+        "access_logging": {
+          "enabled": false
+        }
+      },
+      {
+        "name": "northwind-s3-access-logs",
+        "region": "eu-west-1",
+        "public_access_block": {
+          "block_public_acls": true,
+          "ignore_public_acls": true,
+          "block_public_policy": true,
+          "restrict_public_buckets": true
+        },
+        "policy_is_public": false,
+        "acl_public_grants": [],
+        "acl_is_public": false,
+        "default_encryption": {
+          "algorithm": "AES256",
+          "kms_key_configured": false,
+          "bucket_key_enabled": false
+        },
+        "versioning": "Disabled",
+        "access_logging": {
+          "enabled": false
+        }
+      }
+    ],
+    "summary": {
+      "account_block_is_full": true,
+      "buckets_public_by_policy": [
+        "northwind-marketing-site"
+      ],
+      "buckets_public_by_acl": [],
+      "buckets_without_full_block": [
+        "northwind-marketing-site"
+      ],
+      "buckets_without_default_encryption": [],
+      "buckets_without_access_logging": [
+        "northwind-marketing-site",
+        "northwind-s3-access-logs"
+      ],
+      "buckets_with_versioning": 2
+    }
+  },
+  "sha256": "e3e14f3247a2c1597f346f634e238e0b707edb3418f54c72c24f79675a1493a2"
+}

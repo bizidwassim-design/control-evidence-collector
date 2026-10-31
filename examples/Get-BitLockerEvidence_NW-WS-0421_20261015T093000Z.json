@@ -1,0 +1,84 @@
+{
+  "control_ids": [
+    "ISO27001:A.8.1",
+    "ISO27001:A.8.24",
+    "CIS8:3.6",
+    "CIS8:3.11"
+  ],
+  "collector": "windows/Get-BitLockerEvidence.ps1",
+  "host": "NW-WS-0421",
+  "collected_at_utc": "2026-10-15T09:30:00Z",
+  "collected_by": "NORTHWIND\\svc-evidence",
+  "data": {
+    "volumes": [
+      {
+        "mount_point": "C:",
+        "volume_type": "OperatingSystem",
+        "capacity_gb": 475.7,
+        "protection_status": "On",
+        "volume_status": "FullyEncrypted",
+        "encryption_method": "XtsAes256",
+        "encryption_percentage": 100,
+        "lock_status": "Unlocked",
+        "auto_unlock_enabled": false,
+        "key_protector_types": [
+          "Tpm",
+          "RecoveryPassword"
+        ],
+        "recovery_protectors": 1
+      },
+      {
+        "mount_point": "D:",
+        "volume_type": "Data",
+        "capacity_gb": 931.5,
+        "protection_status": "On",
+        "volume_status": "FullyEncrypted",
+        "encryption_method": "XtsAes256",
+        "encryption_percentage": 100,
+        "lock_status": "Unlocked",
+        "auto_unlock_enabled": true,
+        "key_protector_types": [
+          "ExternalKey",
+          "RecoveryPassword"
+        ],
+        "recovery_protectors": 1
+      }
+    ],
+    "manage_bde_status": [
+      "BitLocker Drive Encryption: Configuration Tool version 10.0.26100",
+      "Disk volumes that can be protected with",
+      "BitLocker Drive Encryption:",
+      "Volume C: [Windows]",
+      "[OS Volume]",
+      "    Conversion Status:    Fully Encrypted",
+      "    Percentage Encrypted: 100.0%",
+      "    Encryption Method:    XTS-AES 256",
+      "    Protection Status:    Protection On"
+    ],
+    "tpm": {
+      "present": true,
+      "ready": true,
+      "enabled": true,
+      "activated": true,
+      "owned": true
+    },
+    "policy": {
+      "policy_present": true,
+      "os_drive_encryption_method": 7,
+      "fixed_drive_encryption_method": 7,
+      "os_require_tpm": 1,
+      "os_recovery_backup_to_ad": 1,
+      "os_recovery_required_before_enc": 1,
+      "deny_write_unprotected_removable": 1
+    },
+    "summary": {
+      "volumes_total": 2,
+      "volumes_protected": 2,
+      "volumes_unprotected": [],
+      "os_drive_protected": true,
+      "os_drive_method": "XtsAes256",
+      "os_drive_has_recovery_key": true
+    }
+  },
+  "sha256": "ed25f7ddd40df6c4dc6e455dd2735c0c5ac77b0ca0b0bd0efdebae6ffaf6d261"
+}

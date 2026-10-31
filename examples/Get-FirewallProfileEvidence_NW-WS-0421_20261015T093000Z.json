@@ -1,0 +1,131 @@
+{
+  "control_ids": [
+    "ISO27001:A.8.20",
+    "ISO27001:A.8.22",
+    "CIS8:4.4",
+    "CIS8:4.5"
+  ],
+  "collector": "windows/Get-FirewallProfileEvidence.ps1",
+  "host": "NW-WS-0421",
+  "collected_at_utc": "2026-10-15T09:30:00Z",
+  "collected_by": "NORTHWIND\\svc-evidence",
+  "data": {
+    "profiles": [
+      {
+        "name": "Domain",
+        "enabled": "True",
+        "default_inbound_action": "Block",
+        "default_outbound_action": "Allow",
+        "allow_inbound_rules": "True",
+        "allow_local_firewall_rules": "False",
+        "notify_on_listen": "False",
+        "log_allowed": "False",
+        "log_blocked": "True",
+        "log_file_name": "%systemroot%\\system32\\LogFiles\\Firewall\\domainfw.log",
+        "log_max_size_kb": 32767
+      },
+      {
+        "name": "Private",
+        "enabled": "True",
+        "default_inbound_action": "Block",
+        "default_outbound_action": "Allow",
+        "allow_inbound_rules": "True",
+        "allow_local_firewall_rules": "False",
+        "notify_on_listen": "True",
+        "log_allowed": "False",
+        "log_blocked": "True",
+        "log_file_name": "%systemroot%\\system32\\LogFiles\\Firewall\\privatefw.log",
+        "log_max_size_kb": 32767
+      },
+      {
+        "name": "Public",
+        "enabled": "True",
+        "default_inbound_action": "Block",
+        "default_outbound_action": "Allow",
+        "allow_inbound_rules": "True",
+        "allow_local_firewall_rules": "False",
+        "notify_on_listen": "True",
+        "log_allowed": "False",
+        "log_blocked": "True",
+        "log_file_name": "%systemroot%\\system32\\LogFiles\\Firewall\\publicfw.log",
+        "log_max_size_kb": 32767
+      }
+    ],
+    "rule_summary": {
+      "total_rules": 412,
+      "by_direction_action_enabled": [
+        {
+          "direction": "Inbound",
+          "action": "Allow",
+          "enabled": "False",
+          "count": 188
+        },
+        {
+          "direction": "Inbound",
+          "action": "Allow",
+          "enabled": "True",
+          "count": 41
+        },
+        {
+          "direction": "Inbound",
+          "action": "Block",
+          "enabled": "True",
+          "count": 6
+        },
+        {
+          "direction": "Outbound",
+          "action": "Allow",
+          "enabled": "False",
+          "count": 102
+        },
+        {
+          "direction": "Outbound",
+          "action": "Allow",
+          "enabled": "True",
+          "count": 75
+        }
+      ]
+    },
+    "enabled_inbound_allow_rules": {
+      "count": 41,
+      "truncated": false,
+      "rules": [
+        {
+          "display_name": "Core Networking - DHCP (DHCP-In)",
+          "profile": "Any",
+          "protocol": "UDP",
+          "local_port": "68",
+          "remote_address": "Any",
+          "policy_store": "PersistentStore"
+        },
+        {
+          "display_name": "Remote Desktop - User Mode (TCP-In)",
+          "profile": "Domain",
+          "protocol": "TCP",
+          "local_port": "3389",
+          "remote_address": "Any",
+          "policy_store": "GroupPolicy"
+        },
+        {
+          "display_name": "EDR Agent Inbound (TCP-In)",
+          "profile": "Domain",
+          "protocol": "TCP",
+          "local_port": "8443",
+          "remote_address": "LocalSubnet",
+          "policy_store": "GroupPolicy"
+        }
+      ]
+    },
+    "service": {
+      "status": "Running",
+      "start_type": "Automatic"
+    },
+    "summary": {
+      "all_profiles_enabled": true,
+      "profiles_disabled": [],
+      "profiles_inbound_not_blocked": [],
+      "profiles_without_block_logging": []
+    }
+  },
+  "sha256": "5a29b9036d043a0c42902a38ba2d1d0f4ce3d1917636f2a312a56b4ac89ee929"
+}

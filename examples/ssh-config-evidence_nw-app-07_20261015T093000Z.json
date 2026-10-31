@@ -1,0 +1,90 @@
+{
+  "control_ids": [
+    "ISO27001:A.8.5",
+    "ISO27001:A.8.9",
+    "ISO27001:A.8.20",
+    "CIS8:3.10",
+    "CIS8:4.1"
+  ],
+  "collector": "linux/ssh-config-evidence.sh",
+  "host": "nw-app-07",
+  "collected_at_utc": "2026-10-15T09:30:00Z",
+  "collected_by": "root",
+  "data": {
+    "is_root": true,
+    "ssh_version": "OpenSSH_9.6p1 Ubuntu-3ubuntu13.5, OpenSSL 3.0.13 30 Jan 2024",
+    "service": {
+      "active": "active",
+      "enabled": "enabled"
+    },
+    "checks": {
+      "permit_root_login": "no",
+      "password_authentication": "no",
+      "pubkey_authentication": "yes",
+      "permit_empty_passwords": "no",
+      "max_auth_tries": "4",
+      "x11_forwarding": "no",
+      "client_alive_interval": "300",
+      "log_level": "VERBOSE",
+      "ciphers": "chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr",
+      "macs": "hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com",
+      "kex_algorithms": "sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org",
+      "authentication_methods": "publickey",
+      "source": "sshd -T (effective)"
+    },
+    "configured_directives": [
+      "/etc/ssh/sshd_config.d/10-northwind.conf:PermitRootLogin no",
+      "/etc/ssh/sshd_config.d/10-northwind.conf:PasswordAuthentication no",
+      "/etc/ssh/sshd_config.d/10-northwind.conf:MaxAuthTries 4",
+      "/etc/ssh/sshd_config.d/10-northwind.conf:X11Forwarding no",
+      "/etc/ssh/sshd_config.d/10-northwind.conf:ClientAliveInterval 300",
+      "/etc/ssh/sshd_config.d/10-northwind.conf:LogLevel VERBOSE",
+      "/etc/ssh/sshd_config.d/10-northwind.conf:AllowGroups ssh-users"
+    ],
+    "files": [
+      {
+        "path": "/etc/ssh/sshd_config",
+        "exists": true,
+        "mode": "600",
+        "owner": "root",
+        "group": "root",
+        "size": 3253,
+        "modified_utc": "2026-06-02T11:20:41Z"
+      },
+      {
+        "path": "/etc/ssh/sshd_config.d/10-northwind.conf",
+        "exists": true,
+        "mode": "600",
+        "owner": "root",
+        "group": "root",
+        "size": 212,
+        "modified_utc": "2026-06-02T11:20:41Z"
+      },
+      {
+        "path": "/etc/ssh/ssh_host_ed25519_key",
+        "exists": true,
+        "mode": "600",
+        "owner": "root",
+        "group": "root",
+        "size": 411,
+        "modified_utc": "2025-02-18T10:07:03Z"
+      },
+      {
+        "path": "/etc/ssh/ssh_host_ed25519_key.pub",
+        "exists": true,
+        "mode": "644",
+        "owner": "root",
+        "group": "root",
+        "size": 96,
+        "modified_utc": "2025-02-18T10:07:03Z"
+      }
+    ],
+    "effective_configuration": {
+      "command": "sshd -T",
+      "exit_code": 0,
+      "stdout": "port 22\naddressfamily any\nlistenaddress [::]:22\nlistenaddress 0.0.0.0:22\npermitrootlogin no\npasswordauthentication no\npubkeyauthentication yes\nmaxauthtries 4\nx11forwarding no\nclientaliveinterval 300\nloglevel VERBOSE\nallowgroups ssh-users",
+      "stderr": ""
+    }
+  },
+  "sha256": "8ab405fd5737532894c21f570833e047ad1dea0fd7e3c0eab3e606eef6711f20"
+}

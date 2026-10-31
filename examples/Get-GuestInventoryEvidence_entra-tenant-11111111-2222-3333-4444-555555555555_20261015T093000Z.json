@@ -1,0 +1,49 @@
+{
+  "control_ids": [
+    "ISO27001:A.5.16",
+    "ISO27001:A.5.18",
+    "ISO27001:A.5.19",
+    "CIS8:5.1",
+    "CIS8:5.3",
+    "CIS8:6.1"
+  ],
+  "collector": "m365/Get-GuestInventoryEvidence.ps1",
+  "host": "entra-tenant:11111111-2222-3333-4444-555555555555",
+  "collected_at_utc": "2026-10-15T09:30:00Z",
+  "collected_by": "evidence.reader@northwind.example",
+  "data": {
+    "tenant_id": "11111111-2222-3333-4444-555555555555",
+    "scopes_used": [
+      "AuditLog.Read.All",
+      "Policy.Read.All",
+      "User.Read.All"
+    ],
+    "inactive_days": 90,
+    "guests": {
+      "sign_in_activity_available": true,
+      "total": 52,
+      "enabled": 47,
+      "disabled": 5,
+      "pending_acceptance": 4,
+      "created_last_30_days": 3,
+      "inactive_over_threshold": 11,
+      "never_signed_in": 4,
+      "home_domains": 6,
+      "guests_per_home_domain": {
+        "contoso.example": 23,
+        "fabrikam.example": 14,
+        "auditpartners.example": 6,
+        "gmail.example": 5,
+        "tailspin.example": 3,
+        "unknown": 1
+      }
+    },
+    "external_collaboration": {
+      "allow_invites_from": "adminsAndGuestInviters",
+      "guest_user_role_id": "2af84b1e-32c8-42b7-82bc-daa82404023b",
+      "allow_email_verified_users_to_join": false,
+      "block_msol_powershell": true
+    }
+  },
+  "sha256": "9f28398f3b2b47152aefeeb76bbf52a642d395c558cb2663c8dff9c94c13dd7a"
+}

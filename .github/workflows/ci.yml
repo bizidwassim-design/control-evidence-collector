@@ -1,0 +1,114 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Parse every PowerShell file (no execution)
+        shell: pwsh
+        run: |
+          $failed = $false
+          Get-ChildItem -Recurse -Include *.ps1, *.psm1 -File | ForEach-Object {
+            $t = $null; $e = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$t, [ref]$e) | Out-Null
+            if ($e) { $failed = $true; $e | ForEach-Object { Write-Host "::error file=$($_.Extent.File),line=$($_.Extent.StartLineNumber)::$($_.Message)" } }
+            else { Write-Host "parse OK $($_.FullName.Substring($pwd.Path.Length + 1))" }
+          }
+          if ($failed) { exit 1 }
+
+      - name: PSScriptAnalyzer (errors only)
+        shell: pwsh
+        run: |
+          Install-Module PSScriptAnalyzer -Force -Scope CurrentUser
+          $r = Invoke-ScriptAnalyzer -Path . -Recurse -Severity Error
+          $r | Format-Table -AutoSize
+          if ($r) { exit 1 }
+
+      - name: PowerShell writes an envelope, Python verifies it (and the reverse)
+        shell: pwsh
+        run: |
+          Import-Module ./lib/Evidence.psm1 -Force
+          $data = [ordered]@{ text = "quote `" backslash \ <tag> & é"; lines = "a`nb"; list = @("one"); n = 42; nested = [ordered]@{ ok = $true; none = $null } }
+          $env = New-EvidenceEnvelope -ControlIds @("ISO27001:A.8.8", "CIS8:7.3") -Collector "ci/pwsh.ps1" -Data $data -HostName "CI-WIN"
+          $path = Write-Evidence -Envelope $env -OutputDirectory "$env:RUNNER_TEMP/xlang"
+          python scripts/verify_evidence.py "$env:RUNNER_TEMP/xlang"
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          $bad = Get-ChildItem examples/*.json | Test-Evidence | Where-Object { -not $_.Valid }
+          if ($bad) { $bad | Format-List; exit 1 }
+          Write-Host "PowerShell verified $((Get-ChildItem examples/*.json).Count) Python-generated examples"
+
+      - name: Run the read-only Windows collectors on the runner and verify the output
+        shell: pwsh
+        run: |
+          foreach ($s in Get-ChildItem collectors/windows/*.ps1) {
+            Write-Host "## $($s.Name)"
+            & $s.FullName -OutputDirectory "$env:RUNNER_TEMP/win"
+          }
+          python scripts/verify_evidence.py "$env:RUNNER_TEMP/win"
+
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: shellcheck the bash library and collectors
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq shellcheck
+          shellcheck --version | head -n 2
+          shellcheck -x -P SCRIPTDIR -S style lib/evidence.sh collectors/linux/*.sh
+
+      - name: pyflakes and py_compile
+        run: |
+          pip install pyflakes
+          python -m pyflakes lib/evidence.py scripts/verify_evidence.py scripts/build_examples.py collectors/cloud/*.py
+          python -m py_compile lib/evidence.py scripts/verify_evidence.py scripts/build_examples.py collectors/cloud/*.py
+
+      - name: Examples are reproducible and every hash verifies
+        run: |
+          python scripts/build_examples.py
+          git diff --exit-code -- examples/
+          python scripts/verify_evidence.py examples/ --manifest "$RUNNER_TEMP/manifest.json"
+          python - <<'EOF'
+          import json, os
+          m = json.load(open(os.path.join(os.environ["RUNNER_TEMP"], "manifest.json")))
+          assert m["files_total"] == 14 and m["files_failed"] == 0, m
+          print("manifest OK:", m["files_ok"], "files,", m["manifest_sha256"])
+          EOF
+
+      - name: A tampered file is detected
+        run: |
+          cp examples/patch-status-evidence_nw-app-07_20261015T093000Z.json "$RUNNER_TEMP/tampered.json"
+          sed -i 's/"reboot_required": false/"reboot_required": true/' "$RUNNER_TEMP/tampered.json"
+          if python scripts/verify_evidence.py "$RUNNER_TEMP/tampered.json"; then echo "tampering was NOT detected"; exit 1; fi
+          echo "tampering detected as expected"
+
+      - name: bash writes an envelope, Python and bash verify it; bash verifies the Python examples
+        run: |
+          source lib/evidence.sh
+          data=$(evidence_object "text" "$(evidence_string 'quote " backslash \ <tag> & é')" "list" "$(printf 'one\n' | evidence_lines_array)" "cmd" "$(evidence_command printf 'hi %s' there)")
+          f=$(evidence_write "ISO27001:A.8.8,CIS8:7.3" "ci/bash.sh" "$data" "$RUNNER_TEMP/xlang" "CI-LINUX")
+          evidence_verify "$f"
+          python scripts/verify_evidence.py "$RUNNER_TEMP/xlang"
+          for e in examples/*.json; do evidence_verify "$e" >/dev/null || exit 1; done
+          echo "bash verified all examples"
+
+      - name: Run the read-only Linux collectors on the runner and verify the output
+        run: |
+          for s in collectors/linux/*.sh; do echo "## $s"; sudo bash "$s" "$RUNNER_TEMP/linux"; done
+          python scripts/verify_evidence.py "$RUNNER_TEMP/linux"

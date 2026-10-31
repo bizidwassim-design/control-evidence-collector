@@ -1,0 +1,52 @@
+{
+  "control_ids": [
+    "ISO27001:A.5.17",
+    "ISO27001:A.8.5",
+    "CIS8:6.3",
+    "CIS8:6.5"
+  ],
+  "collector": "m365/Get-MfaRegistrationEvidence.ps1",
+  "host": "entra-tenant:11111111-2222-3333-4444-555555555555",
+  "collected_at_utc": "2026-10-15T09:30:00Z",
+  "collected_by": "evidence.reader@northwind.example",
+  "data": {
+    "tenant_id": "11111111-2222-3333-4444-555555555555",
+    "scopes_used": [
+      "AuditLog.Read.All",
+      "UserAuthenticationMethod.Read.All"
+    ],
+    "auth_type": "Delegated",
+    "registration": {
+      "users_total": 842,
+      "members_total": 790,
+      "guests_total": 52,
+      "mfa_registered": 801,
+      "mfa_capable": 805,
+      "members_mfa_registered": 781,
+      "members_mfa_registered_pct": 98.9,
+      "passwordless_capable": 312,
+      "sspr_registered": 744,
+      "sspr_capable": 760,
+      "system_preferred_enabled": 842,
+      "admins_total": 14,
+      "admins_mfa_registered": 14,
+      "admins_without_mfa": 0,
+      "methods_registered_counts": {
+        "microsoftAuthenticatorPush": 731,
+        "softwareOneTimePasscode": 119,
+        "mobilePhone": 402,
+        "windowsHelloForBusiness": 298,
+        "passKeyDeviceBound": 41,
+        "email": 610,
+        "temporaryAccessPass": 3
+      },
+      "default_mfa_method_counts": {
+        "microsoftAuthenticatorPush": 702,
+        "mobilePhone": 88,
+        "softwareOneTimePasscode": 11,
+        "none": 41
+      }
+    }
+  },
+  "sha256": "cc3ee28114111926a17b0f15a39db0373c10281cd3d86cabbe1eaa2b76d42823"
+}

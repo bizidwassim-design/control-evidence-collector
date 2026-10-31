@@ -1,0 +1,95 @@
+{
+  "control_ids": [
+    "ISO27001:A.5.15",
+    "ISO27001:A.5.16",
+    "ISO27001:A.5.18",
+    "ISO27001:A.8.2",
+    "CIS8:5.1",
+    "CIS8:5.2",
+    "CIS8:5.4"
+  ],
+  "collector": "linux/users-sudoers-evidence.sh",
+  "host": "nw-app-07",
+  "collected_at_utc": "2026-10-15T09:30:00Z",
+  "collected_by": "root",
+  "data": {
+    "is_root": true,
+    "login_accounts": [
+      {
+        "name": "root",
+        "uid": 0,
+        "gid": 0,
+        "home": "/root",
+        "shell": "/bin/bash",
+        "password_state": "locked",
+        "password_age_days": null,
+        "password_max_days": 99999
+      },
+      {
+        "name": "ops-admin",
+        "uid": 1001,
+        "gid": 1001,
+        "home": "/home/ops-admin",
+        "shell": "/bin/bash",
+        "password_state": "set",
+        "password_age_days": 42,
+        "password_max_days": 365
+      },
+      {
+        "name": "deploy",
+        "uid": 1002,
+        "gid": 1002,
+        "home": "/home/deploy",
+        "shell": "/bin/bash",
+        "password_state": "locked",
+        "password_age_days": null,
+        "password_max_days": 99999
+      }
+    ],
+    "uid_zero_accounts": [
+      "root"
+    ],
+    "privileged_groups": [
+      {
+        "group": "sudo",
+        "members": [
+          "ops-admin"
+        ]
+      },
+      {
+        "group": "adm",
+        "members": [
+          "syslog",
+          "ops-admin"
+        ]
+      },
+      {
+        "group": "root",
+        "members": []
+      }
+    ],
+    "login_defs": {
+      "pass_max_days": 365,
+      "pass_min_days": 1,
+      "pass_warn_age": 14,
+      "encrypt_method": "YESCRYPT",
+      "umask": "027"
+    },
+    "sudoers": {
+      "readable": true,
+      "sudo_version": "Sudo version 1.9.15p5",
+      "nopasswd_entries": 1,
+      "unrestricted_all_entries": 1,
+      "active_lines": [
+        "/etc/sudoers:Defaults\tenv_reset",
+        "/etc/sudoers:Defaults\tuse_pty",
+        "/etc/sudoers:Defaults\tlogfile=\"/var/log/sudo.log\"",
+        "/etc/sudoers:root\tALL=(ALL:ALL) ALL",
+        "/etc/sudoers:%sudo\tALL=(ALL:ALL) ALL",
+        "/etc/sudoers:@includedir /etc/sudoers.d",
+        "/etc/sudoers.d/90-deploy:deploy ALL=(root) NOPASSWD: /usr/bin/systemctl restart northwind-api.service"
+      ]
+    }
+  },
+  "sha256": "d06cd251157010d67aeb3929658a9b8f57744011e203481071cc49d2ee22b35d"
+}

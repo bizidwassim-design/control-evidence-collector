@@ -1,0 +1,49 @@
+{
+  "control_ids": [
+    "ISO27001:A.8.8",
+    "CIS8:7.3",
+    "CIS8:7.4"
+  ],
+  "collector": "linux/patch-status-evidence.sh",
+  "host": "nw-app-07",
+  "collected_at_utc": "2026-10-15T09:30:00Z",
+  "collected_by": "root",
+  "data": {
+    "is_root": true,
+    "distribution": "Ubuntu 24.04.2 LTS",
+    "os_release": [
+      "PRETTY_NAME=\"Ubuntu 24.04.2 LTS\"",
+      "NAME=\"Ubuntu\"",
+      "VERSION_ID=\"24.04\"",
+      "ID=ubuntu",
+      "ID_LIKE=debian"
+    ],
+    "kernel": {
+      "running": "6.8.0-45-generic",
+      "newest_installed": "6.8.0-45-generic",
+      "running_is_newest": true
+    },
+    "uptime_days": 11.4,
+    "package_manager": "apt",
+    "pending_updates": {
+      "count": 3,
+      "security_count": 2,
+      "packages": [
+        "libssl3t64/noble-security 3.0.13-0ubuntu3.5 amd64 [upgradable from: 3.0.13-0ubuntu3.4]",
+        "openssl/noble-security 3.0.13-0ubuntu3.5 amd64 [upgradable from: 3.0.13-0ubuntu3.4]",
+        "vim-common/noble-updates 2:9.1.0016-1ubuntu7.6 all [upgradable from: 2:9.1.0016-1ubuntu7.5]"
+      ]
+    },
+    "last_update_run": "2026-10-15T06:17:02Z",
+    "reboot_required": false,
+    "automatic_updates": {
+      "unattended_upgrades_installed": true,
+      "apt_periodic_config": [
+        "APT::Periodic::Update-Package-Lists \"1\";",
+        "APT::Periodic::Unattended-Upgrade \"1\";"
+      ],
+      "last_history_entry": "2026-10-12  06:20:14"
+    }
+  },
+  "sha256": "cccd3d6491fb16b1299b0a71de18c638952de49f1ea0d8e4ef0f5d339b678174"
+}

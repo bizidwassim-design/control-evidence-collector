@@ -1,0 +1,105 @@
+{
+  "control_ids": [
+    "ISO27001:A.5.15",
+    "ISO27001:A.5.18",
+    "ISO27001:A.8.2",
+    "CIS8:4.7",
+    "CIS8:5.2",
+    "CIS8:5.4"
+  ],
+  "collector": "windows/Get-LocalAdminEvidence.ps1",
+  "host": "NW-WS-0421",
+  "collected_at_utc": "2026-10-15T09:30:00Z",
+  "collected_by": "NORTHWIND\\svc-evidence",
+  "data": {
+    "administrators_group": {
+      "source": "Get-LocalGroupMember",
+      "member_count": 3,
+      "members": [
+        {
+          "name": "NW-WS-0421\\Administrator",
+          "object_class": "User",
+          "principal_source": "Local",
+          "sid": "S-1-5-21-1000000001-2000000002-3000000003-500"
+        },
+        {
+          "name": "NORTHWIND\\GG-Workstation-Admins",
+          "object_class": "Group",
+          "principal_source": "ActiveDirectory",
+          "sid": "S-1-5-21-4000000004-5000000005-6000000006-1105"
+        },
+        {
+          "name": "NW-WS-0421\\laps-admin",
+          "object_class": "User",
+          "principal_source": "Local",
+          "sid": "S-1-5-21-1000000001-2000000002-3000000003-1001"
+        }
+      ]
+    },
+    "local_users": [
+      {
+        "name": "Administrator",
+        "enabled": false,
+        "is_builtin_admin": true,
+        "is_builtin_guest": false,
+        "password_required": true,
+        "password_expires": null,
+        "password_last_set": "2026-03-02T08:11:40Z",
+        "last_logon": null,
+        "user_may_change_pwd": true,
+        "description": "Built-in account for administering the computer/domain"
+      },
+      {
+        "name": "Guest",
+        "enabled": false,
+        "is_builtin_admin": false,
+        "is_builtin_guest": true,
+        "password_required": false,
+        "password_expires": null,
+        "password_last_set": null,
+        "last_logon": null,
+        "user_may_change_pwd": false,
+        "description": "Built-in account for guest access to the computer/domain"
+      },
+      {
+        "name": "laps-admin",
+        "enabled": true,
+        "is_builtin_admin": false,
+        "is_builtin_guest": false,
+        "password_required": true,
+        "password_expires": "2026-11-10T00:00:00Z",
+        "password_last_set": "2026-10-11T02:00:15Z",
+        "last_logon": "2026-10-14T16:42:03Z",
+        "user_may_change_pwd": true,
+        "description": "Managed by LAPS"
+      }
+    ],
+    "password_policy": {
+      "force_user_logoff_how_long_after_time_expires?": "Never",
+      "minimum_password_age_(days)": "1",
+      "maximum_password_age_(days)": "365",
+      "minimum_password_length": "14",
+      "length_of_password_history_maintained": "24",
+      "lockout_threshold": "10",
+      "lockout_duration_(minutes)": "15",
+      "lockout_observation_window_(minutes)": "15",
+      "computer_role": "WORKSTATION"
+    },
+    "summary": {
+      "administrators_count": 3,
+      "local_admin_members": [
+        "NW-WS-0421\\Administrator",
+        "NW-WS-0421\\laps-admin"
+      ],
+      "domain_or_entra_members": [
+        "NORTHWIND\\GG-Workstation-Admins"
+      ],
+      "local_users_total": 3,
+      "local_users_enabled": 1,
+      "builtin_admin_enabled": false,
+      "builtin_guest_enabled": false,
+      "enabled_without_password": []
+    }
+  },
+  "sha256": "c3525781f79dc04bf0ac2d573b066220d0d9cbeafc30afb7de5b58cc002cd3bd"
+}

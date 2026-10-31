@@ -1,0 +1,86 @@
+{
+  "control_ids": [
+    "ISO27001:A.8.15",
+    "ISO27001:A.8.16",
+    "CIS8:8.2",
+    "CIS8:8.5",
+    "CIS8:8.9"
+  ],
+  "collector": "linux/auditd-evidence.sh",
+  "host": "nw-app-07",
+  "collected_at_utc": "2026-10-15T09:30:00Z",
+  "collected_by": "root",
+  "data": {
+    "is_root": true,
+    "service": {
+      "installed": true,
+      "active": "active",
+      "enabled": "enabled"
+    },
+    "audit_status": {
+      "command": "auditctl -s",
+      "exit_code": 0,
+      "stdout": "enabled 2\nfailure 1\npid 812\nrate_limit 0\nbacklog_limit 8192\nlost 0\nbacklog 0\nbacklog_wait_time 60000\nbacklog_wait_time_actual 0\nloginuid_immutable 0 unlocked",
+      "stderr": ""
+    },
+    "loaded_rules": {
+      "command": "auditctl -l",
+      "exit_code": 0,
+      "stdout": "-w /etc/sudoers -p wa -k scope\n-w /etc/sudoers.d -p wa -k scope\n-w /etc/passwd -p wa -k identity\n-w /etc/shadow -p wa -k identity\n-a always,exit -F arch=b64 -S execve -F euid=0 -k rootcmd\n-w /var/log/sudo.log -p wa -k actions\n-e 2",
+      "stderr": ""
+    },
+    "rules_files": [
+      {
+        "path": "/etc/audit/rules.d/10-base.rules",
+        "readable": true,
+        "sha256": "4d1f0c9d2e5b7a8f6c3e1a9b8d7c6f5e4a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d",
+        "active_lines": 4
+      },
+      {
+        "path": "/etc/audit/rules.d/50-northwind.rules",
+        "readable": true,
+        "sha256": "9b8c7d6e5f4a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0a9b8c",
+        "active_lines": 7
+      },
+      {
+        "path": "/etc/audit/rules.d/99-finalize.rules",
+        "readable": true,
+        "sha256": "1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b",
+        "active_lines": 1
+      }
+    ],
+    "auditd_conf": {
+      "readable": true,
+      "log_file": "/var/log/audit/audit.log",
+      "log_format": "ENRICHED",
+      "max_log_file_mb": 50,
+      "num_logs": 10,
+      "max_log_file_action": "ROTATE",
+      "space_left_action": "SYSLOG",
+      "admin_space_left_action": "SUSPEND",
+      "disk_full_action": "SUSPEND",
+      "disk_error_action": "SUSPEND",
+      "flush": "INCREMENTAL_ASYNC"
+    },
+    "audit_log_file": {
+      "path": "/var/log/audit/audit.log",
+      "exists": true,
+      "mode": "600",
+      "owner": "root",
+      "group": "root",
+      "size": 23891244,
+      "modified_utc": "2026-10-15T09:29:58Z"
+    },
+    "journald": {
+      "settings": [
+        "Storage=persistent",
+        "SystemMaxUse=2G"
+      ],
+      "persistent_dir_exists": true
+    },
+    "remote_forwarding": [
+      "/etc/rsyslog.d/60-forward.conf:*.* @@siem-collector.northwind.example:6514"
+    ]
+  },
+  "sha256": "108f388fbfd1dceaf887fa1cdf974ca7d105e74d61d60cdcdc007a64b91c6c6a"
+}
