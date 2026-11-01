@@ -4,8 +4,8 @@
 
 Read-only scripts that collect **technical evidence for ISO/IEC 27001:2022 and CIS Controls v8** from
 Windows, Linux, Microsoft 365 and cloud accounts, and write it as **timestamped JSON with an embedded
-SHA-256**. The auditor gets reproducible, hashed artefacts; you get a manifest that proves nothing changed
-between collection and review.
+SHA-256**. The auditor gets reproducible, hashed artefacts, and a manifest whose digest, once recorded
+somewhere the collector cannot write, shows whether anything changed between collection and review.
 
 > 🇫🇷 Résumé en français en bas de page.
 
@@ -94,6 +94,13 @@ bytes is computed, and the zeros are replaced by the digest. To verify, replace 
 hash again. Because this operates on bytes, a file written by PowerShell can be verified by bash or Python
 and vice versa, with no JSON canonicalisation to get wrong. CI proves the round-trip in all directions.
 
+**What the hash does and does not prove.** An embedded SHA-256 detects accidental or later changes only when it
+is compared with a digest kept elsewhere: anyone who edits a file can recompute its hash. The hashes are not
+signed, so on their own they do not authenticate the collector or prove who produced the evidence. For that,
+record the manifest digest in a system the collector cannot modify (audit ticket, GRC tool, WORM storage) at
+collection time, or sign the manifest (for example with `gpg --detach-sign` or Sigstore `cosign sign-blob`) and
+keep the signature and the public key with the audit file.
+
 File names: `<collector>_<host>_<timestamp>.json`. Tenant and account collectors use `host` values such as
 `entra-tenant:<id>`, `aws-account:<id>`, `azure-subscription:<id>`.
 
@@ -133,7 +140,8 @@ looking for" is in [docs/control-mapping.md](docs/control-mapping.md).
 * **No dependencies beyond the obvious.** bash needs no `jq`; PowerShell needs no module except Microsoft.Graph
   for the tenant collectors; Python needs only the SDK of the cloud you query.
 * **Reproducible samples.** `examples/` is generated from fictional data with fixed timestamps; CI rebuilds
-  it and fails if it drifts, verifies every hash, and checks that a tampered file is rejected.
+  it and fails if it drifts, verifies every hash, and checks that a file edited without recomputing its hash is
+  rejected.
 
 ## How it relates to the sibling repositories
 

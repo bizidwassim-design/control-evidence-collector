@@ -5,6 +5,9 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+- The README and the safe-running guide state what the unsigned SHA-256 hashes prove (change detection against a digest stored elsewhere) and what they do not (who produced the evidence), with how to sign the manifest.
+
 ## [1.0.0] — 2026-10-31
 
 ### Added

@@ -70,7 +70,9 @@ Collect at the **same point in time** across a sample (same day) so the auditor 
 
 * Keep evidence for at least **one full certification cycle** (three years for ISO/IEC 27001) or the
   period your regulator requires, whichever is longer.
-* Keep the **manifest** for as long as the evidence; it is what proves integrity.
+* Keep the **manifest** and its recorded digest for as long as the evidence. Integrity rests on that digest
+  being stored where the collector cannot change it, or on a signature over the manifest; the unsigned
+  hashes inside the files alone do not prove provenance.
 * Evidence contains personal data (user names). Apply your data-protection retention rule and do not
   keep it longer than the audit purpose justifies.
 
