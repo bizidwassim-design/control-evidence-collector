@@ -159,6 +159,13 @@ They do not assess control design or continuous operation, and they are not lega
 each script before running it in your environment, use a dedicated read-only identity, and handle the
 output as confidential: it contains account and configuration details. All sample data is fictional.
 
+## AI assistance
+
+Built with Claude Code as a coding and writing assistant, which is why it appears as a co-author on some commits.
+**Editor and reviewer: Wassim Bizid**, who set the scope, the frameworks and the GRC approach, edited the content
+and decided what was published. Automated tests in CI check the published outputs. This is a maintainer review,
+not an independent one.
+
 ## License
 
 [MIT](LICENSE) — free to use, copy, modify and redistribute.
